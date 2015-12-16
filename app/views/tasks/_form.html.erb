@@ -1,0 +1,8 @@
+<%= simple_form_for(@task) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :content %>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= link_to 'Back', tasks_path, class: 'btn btn-default' %>
+<% end %>
