@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  authenticated :user do
+    root 'tasks#index', as: :authenticated_root
+  end
+
   root 'pages#home'
+
   get 'about' => 'pages#about'
 
   resources :tasks
@@ -59,4 +64,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end 
+end
