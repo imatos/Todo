@@ -3,7 +3,9 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = current_user.tasks
+    @todo_tasks = current_user.tasks.todo
+    @doing_tasks = current_user.tasks.doing
+    @done_tasks = current_user.tasks.done
   end
 
   def new
@@ -15,6 +17,10 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new task_params
+    p '-' * 99
+    p @task.content
+    p @task.status
+
     if @task.save
       redirect_to tasks_path, notice: 'Task was successfully created.'
     else
@@ -41,6 +47,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:content)
+      params.require(:task).permit(:content, :status)
     end
 end
