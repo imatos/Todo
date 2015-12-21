@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :authenticate_user!
 
   def index
@@ -17,9 +17,6 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new task_params
-    p '-' * 99
-    p @task.content
-    p @task.status
 
     if @task.save
       redirect_to tasks_path, notice: 'Task was successfully created.'
@@ -39,6 +36,12 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+  end
+
+  def change_status
+    @task.status = params[:status]
+    @task.save
+    redirect_to tasks_path, notice: 'Task status was successfully changed.'
   end
 
   private

@@ -1,0 +1,6 @@
+<% if task.doing? %>
+  <%= link_to 'Mark as Todo', change_status_task_path(task, status: :todo), method: :put, class: 'btn btn-primary' %>
+  <%= link_to 'Mark as Done', change_status_task_path(task, status: :done), method: :put, class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Mark as Doing', change_status_task_path(task, status: :doing), method: :put, class: 'btn btn-primary' %>
+<% end %>
