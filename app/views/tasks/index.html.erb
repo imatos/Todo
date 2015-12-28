@@ -4,14 +4,17 @@
 
 <%= link_to 'New Task', new_task_path, class: 'btn btn-primary' %>
 
-<h2>Todo</h2>
-<%= render 'tasks', tasks: @todo_tasks %>
-<br/>
-
-<h2>Doing</h2>
-<%= render 'tasks', tasks: @doing_tasks %>
-<br/>
-
-<h2>Done</h2>
-<%= render 'tasks', tasks: @done_tasks %>
-<br/>
+<div class="row">
+  <div class="col-md-4">
+    <h2 class="text-center">To Do</h2>
+    <%= render @todo_tasks %>
+  </div>
+  <div class="col-md-4">
+    <h2 class="text-center">Doing</h2>
+    <%= render @doing_tasks %>
+  </div>
+  <div class="col-md-4">
+    <h2 class="text-center">Done</h2>
+    <%= render @done_tasks %>
+  </div>
+</div>

@@ -1,8 +1,19 @@
-<tr>
-  <td><%= task.content %></td>
-  <td>
-    <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-default' %>
-    <%= link_to 'Destroy', task, class:'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Created <%= time_ago_in_words task.created_at %> ago
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <%= task.content %>
+      </div>
+      <div class="col-md-4">
+        <%= link_to '<i class="fa fa-pencil"></i>'.html_safe , edit_task_path(task), class: 'btn btn-default' %>
+        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, task, class:'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer text-center btn-group btn-group-justified">
     <%= render 'status_links', task: task %>
-  </td>
-</tr>
+  </div>
+</div>

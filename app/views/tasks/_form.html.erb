@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <%= f.input :content %>
-  <%= f.input :status, collection: Task.statuses.keys, selected: Task.done %>
+  <%= f.input :status, collection: Task.statuses.keys, selected: @task.status %>
 
   <%= f.button :submit, class: 'btn btn-primary' %>
   <%= link_to 'Back', tasks_path, class: 'btn btn-default' %>
