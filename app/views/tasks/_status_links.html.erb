@@ -1,8 +1,8 @@
 <% if task.doing? %>
-  <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, change_status_task_path(task, status: :todo), method: :put, class: 'btn btn-info' %>
-  <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, change_status_task_path(task, status: :done), method: :put, class: 'btn btn-info' %>
+  <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, mark_as_todo_task_path(task), method: :put, class: 'btn btn-info' %>
+  <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, mark_as_done_task_path(task), method: :put, class: 'btn btn-info' %>
 <% elsif task.todo? %>
-  <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, change_status_task_path(task, status: :doing), method: :put, class: 'btn btn-info' %>
+  <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, mark_as_doing_task_path(task), method: :put, class: 'btn btn-info' %>
 <% else %>
-  <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, change_status_task_path(task, status: :doing), method: :put, class: 'btn btn-info' %>
+  <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, mark_as_doing_task_path(task), method: :put, class: 'btn btn-info' %>
 <% end %>

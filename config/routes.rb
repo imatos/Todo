@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :tasks do
     member do
-      put :change_status
+      put :mark_as_todo
+      put :mark_as_doing
+      put :mark_as_done
     end
   end
 

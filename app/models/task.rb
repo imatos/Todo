@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
-  validates :content, presence: true, uniqueness: true
+  validates :content, presence: true
+
+  validates :content, uniqueness: {scope: [:content, :user]}
 
   belongs_to :user
 

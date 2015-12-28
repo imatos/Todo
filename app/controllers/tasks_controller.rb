@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :set_task, only: [:edit, :update, :destroy,
+    :mark_as_todo, :mark_as_doing, :mark_as_done]
+
+  before_action :authorized_user!, except: [:index, :new, :create]
   before_action :authenticate_user!
 
   def index
@@ -9,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def edit
@@ -38,9 +41,19 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-  def change_status
-    @task.update_attributes status: params[:status]
-    redirect_to tasks_path, notice: 'Task status was successfully changed.'
+  def mark_as_todo
+    @task.todo!
+    redirect_to tasks_path
+  end
+
+  def mark_as_doing
+    @task.doing!
+    redirect_to tasks_path
+  end
+
+  def mark_as_done
+    @task.done!
+    redirect_to tasks_path
   end
 
   private
@@ -49,6 +62,11 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:content, :status)
+      params.require(:task).permit(:content)
+    end
+
+    def authorized_user!
+      @task = current_user.tasks.find_by(id: params[:id])
+      redirect_to tasks_path, notice: "Not authorized to edit this task" if @task.nil?
     end
 end
