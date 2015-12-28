@@ -39,8 +39,6 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    p '-' * 300
-    p params[:status]
     @task.update_attributes status: params[:status]
     redirect_to tasks_path, notice: 'Task status was successfully changed.'
   end
