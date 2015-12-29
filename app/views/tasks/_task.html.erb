@@ -11,7 +11,7 @@
     </div>
     </div>
   <div class="panel-body">
-    <%= simple_format task.content %>
+    <%= simple_format auto_link task.content, html: { target: '_blank' } %>
   </div>
   <div class="panel-footer text-center btn-group btn-group-justified">
     <%= render 'status_links', task: task %>
