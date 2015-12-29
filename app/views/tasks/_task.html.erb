@@ -11,7 +11,7 @@
     </div>
     </div>
   <div class="panel-body">
-    <%= task.content %>
+    <%= simple_format task.content %>
   </div>
   <div class="panel-footer text-center btn-group btn-group-justified">
     <%= render 'status_links', task: task %>
